@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-'''script that generates a .tgz archive from the contents of the web_static'''
+"""Fabric script module"""
 from fabric.api import *
 import time
 
 
 def do_pack():
-    '''Generates a .tgz archive from the contents of the web_static'''
+    """Generates a .tgz archive from the contents of the web_static"""
     try:
-        local('mkdir -p versions')
+        local("mkdir -p versions")
         archive_path = 'versions/web_static_{}.tgz'.format(
                 time.strftime('%Y%m%d%H%M%S'))
-        local('tar -cvzf {} web_static'.format(output_path))
-        return output_path
+        results = local('tar -cvzf {} web_static'.format(archive_path))
+        return archive_path
     except Exception:
         return None
