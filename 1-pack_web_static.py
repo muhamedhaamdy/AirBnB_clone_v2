@@ -10,7 +10,7 @@ def do_pack():
         local('mkdir -p versions')
         output_path = 'versions/web_static_{}.tgz'.formate(
             time.strftime('%Y%m%d%H%M%S'))
-        check = local('tar -cvzf {} web_static'.format(output_path))
+        local('tar -cvzf {} web_static'.format(output_path))
         return output_path
     except Exception:
         return None
