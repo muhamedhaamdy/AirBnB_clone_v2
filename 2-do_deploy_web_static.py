@@ -8,6 +8,7 @@ env.hosts = ['3.90.84.182', '54.227.198.43']
 
 
 def do_deploy(archive_path):
+    """Distributes an archive to my web servers"""
     try:
         put(archive_path, '/tmp')
         tokns archive_path.split('/')
