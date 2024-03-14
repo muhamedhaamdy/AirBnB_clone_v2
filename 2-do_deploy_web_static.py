@@ -22,7 +22,7 @@ def do_deploy(archive_path):
 
     put(archive_path, '/tmp/')
     run('mkdir -p {}'.format(releases))
-    run('tar -xzf tmp/{}.tgz -C {}'.format(abs_path[0], releases))
+    run('tar -xzf /tmp/{}.tgz -C {}'.format(abs_path[0], releases))
     run('rm -rf /tmp/{}.tgz'.format(abs_path[0]))
     run('mv {}/web_static/* {} '.format(releases, releases))
     run('rm -rf {}/web_static'.format(releases))
