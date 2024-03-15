@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Fabric script module"""
 from fabric.api import *
-import paramiko
 import time
 import os
 
@@ -20,6 +19,7 @@ def do_pack():
     except Exception:
         return None
 
+
 def do_deploy(archive_path):
     """Distributes an archive to my web servers"""
     if not os.path.exists(archive_path):
@@ -27,7 +27,6 @@ def do_deploy(archive_path):
 
     archive_file = archive_path[9:]
     release_version = '/data/web_static/releases/{}'.format(archive_file[:-4])
-
     put(archive_path, '/tmp/')
     run('mkdir -p {}'.format(release_version))
     run('tar -xzf /tmp/{} -C {}'.format(archive_file, release_version))
@@ -39,6 +38,7 @@ def do_deploy(archive_path):
 
     print('New version deployed!')
     return True
+
 
 def deploy():
     """Create and distributes an archive to web servers"""
