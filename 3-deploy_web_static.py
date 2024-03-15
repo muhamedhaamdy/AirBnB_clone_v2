@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 """Fabric script module"""
 from fabric.api import *
 import paramiko
