@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/python3
 """Fabric script module"""
 from fabric.api import *
 import paramiko
