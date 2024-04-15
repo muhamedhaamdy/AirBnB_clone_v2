@@ -27,9 +27,11 @@ def python_route(text):
     text_with_spaces = text.replace('_', ' ')
     return "Python {}".format(text_with_spaces)
 
+
 @app.route("/number/<int:n>", strict_slashes=False)
 def display_num(n):
     return '{} is a number'.format(n)
+
 
 if __name__ == "__main__":
     app.run()
