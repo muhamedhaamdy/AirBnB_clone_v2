@@ -20,11 +20,13 @@ def c_route(text):
     text_with_spaces = text.replace('_', ' ')
     return "C {}".format(text_with_spaces)
 
+
 @app.route("/python/", defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
 def python_route(text):
     text_with_spaces = text.replace('_', ' ')
     return "Python {}".format(text_with_spaces)
+
 
 if __name__ == "__main__":
     app.run()
