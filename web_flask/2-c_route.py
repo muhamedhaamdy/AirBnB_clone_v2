@@ -14,6 +14,7 @@ def hello_HBNB():
 def just_HBNB():
     return "HBNB"
 
+
 @app.route("/c/<text>", strict_slashes=False)
 def c_route(text):
     text_with_spaces = text.replace('_', ' ')
