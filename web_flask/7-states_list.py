@@ -47,14 +47,14 @@ def even_or_odd(n):
 
 
 
-@app.route("/states_list", strict_slashes=False)
-def list_of_cities():
-    states = [state for state in storage.all(State).values()]
-    return render_template('7-states_list.html', all_states=states)
-
+@app.route('/states_list')
+def html_fetch_states():
+    state_objs = storage.all("State").values()
+    return render_template('7-states_list.html',
+                           all_states=state_objs)
 
 @app.teardown_appcontext
-def remove_session():
+def remove_session(self):
     storage.close()
 
 
