@@ -62,3 +62,7 @@ class FileStorage:
             c_name = obj.__class__.__name__
             c_id = obj.id
             del FileStorage.__objects[c_name + '.' + c_id]
+
+    def close(self):
+        '''method for deserializing the JSON file to objects'''
+        self.reload()
