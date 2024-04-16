@@ -9,7 +9,6 @@
             {% for state in all_states %}
             <LI> 
                 {{ state.id }}: <B>{{ state.name }}</B>
-            </LI>
             <UL>
                 {% for city in state.cities %}
                     <LI>
@@ -18,6 +17,7 @@
                 {% endfor %}
             </UL>
             {% endfor %}
+            </LI>
         </UL>
     </BODY>
 </HTML>

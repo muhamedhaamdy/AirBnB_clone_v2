@@ -45,6 +45,7 @@ def number_template(n):
 def even_or_odd(n):
     return render_template('6-number_odd_or_even.html', num=n)
 
+@app.route('/states')
 @app.route('/states_list')
 def html_fetch_states():
     state_objs = [s for s in storage.all("State").values()]
