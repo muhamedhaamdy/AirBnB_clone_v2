@@ -46,12 +46,13 @@ def even_or_odd(n):
     return render_template('6-number_odd_or_even.html', num=n)
 
 
-
 @app.route('/states_list')
 def html_fetch_states():
-    state_objs = storage.all("State").values()
+    state_objs = [s for s in storage.all("State").values()]
+    state_objs = sorted(state_objs, key=lambda x: x.name)
     return render_template('7-states_list.html',
                            all_states=state_objs)
+
 
 @app.teardown_appcontext
 def remove_session(self):
