@@ -44,9 +44,9 @@ def number_template(n):
 @app.route("/number_odd_or_even/<int:n>")
 def even_or_odd(n):
     return render_template('6-number_odd_or_even.html', num=n)
-
-@app.route('/states')
-@app.route('/states_list')
+ 
+@app.route('/states', strict_slashes=False)
+@app.route('/states_list', strict_slashes=False)
 def html_fetch_states():
     state_objs = [s for s in storage.all("State").values()]
     state_objs = sorted(state_objs, key=lambda x: x.name)
@@ -54,12 +54,20 @@ def html_fetch_states():
                            all_states=state_objs)
 
 
-@app.route('/cities_by_states')
+@app.route('/cities_by_states', strict_slashes=False)
 def cities_by_states():
     state_objs = [s for s in storage.all("State").values()]
     state_objs = sorted(state_objs, key=lambda x: x.name)
     return render_template('8-cities_by_states.html',
                            all_states=state_objs)
+
+@app.route('/states/<id>', strict_slashes=False)
+def fetch_state_by_id(id):
+    state = storage.get("State", id)
+    if state:
+        return render_template('9-states.html', state=state)
+    else:
+        return render_template('9-states.html', state=None)
 
 
 @app.teardown_appcontext
