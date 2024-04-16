@@ -8,16 +8,15 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-    def all(self, cls=None):
+    def all(self, obj=None):
         """Returns a dictionary of models currently in storage"""
-        dict = {}
-        if cls is not None:
-            for k, v in FileStorage.__objects.items():
-                if isinstance(v, cls):
-                    dict[k] = v
-            return dict
-        else:
+        if obj is None:
             return FileStorage.__objects
+        return {
+            key: val
+            for key, val in FileStorage.__objects.items()
+            if isinstance(val, obj)
+        }
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -43,10 +42,10 @@ class FileStorage:
         from models.review import Review
 
         classes = {
-            'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'State': State, 'City': City, 'Amenity': Amenity,
-            'Review': Review
-        }
+                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                    'State': State, 'City': City, 'Amenity': Amenity,
+                    'Review': Review
+                  }
         try:
             temp = {}
             with open(FileStorage.__file_path, 'r') as f:
@@ -57,12 +56,13 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """delete object"""
-        if obj:
-            c_name = obj.__class__.__name__
-            c_id = obj.id
-            del FileStorage.__objects[c_name + '.' + c_id]
+        """Delete obj from FileStorage.__objects"""
+        if obj is not None:
+            for key, val in FileStorage.__objects.items():
+                if val is obj:
+                    del FileStorage.__objects[key]
+                    break
 
     def close(self):
-        '''method for deserializing the JSON file to objects'''
+        """Calls the reload method"""
         self.reload()
