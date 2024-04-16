@@ -52,7 +52,13 @@ def html_fetch_states():
     state_objs = sorted(state_objs, key=lambda x: x.name)
     return render_template('7-states_list.html',
                            all_states=state_objs)
-        
+
+@app.route('/cities_by_states')
+def cities_by_states():
+    state_objs = [s for s in storage.all("State").values()]
+    state_objs = sorted(state_objs, key=lambda x: x.name)
+    return render_template('8-cities_by_states.html',
+                           all_states=state_objs)
 
 @app.teardown_appcontext
 def remove_session(self):
